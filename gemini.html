@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinetic Wear - Engineered for Performance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #181818;
+            --bg-card: #1F1F1F;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a3a3a3;
+            --accent-primary: #39ff14; /* Neon Green */
+            --accent-secondary: #ff4500; /* Orange-Red */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .font-heading {
+            font-family: 'Teko', sans-serif;
+        }
+
+        .hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1581009137042-c552b485697a?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center 30%;
+        }
+        
+        .collection-bg-men {
+             background-image: url('https://images.unsplash.com/photo-1548690312-e3b511d5b111?q=80&w=1974&auto=format&fit=crop');
+             background-size: cover;
+             background-position: center;
+        }
+        
+        .collection-bg-women {
+            background-image: url('https://images.unsplash.com/photo-1584735935639-5fb3a7e58f3b?q=80&w=1974&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .collection-bg-combat {
+            background-image: url('https://images.unsplash.com/photo-1599496495393-a5b5dd518bee?q=80&w=1974&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .collection-bg-acc {
+            background-image: url('https://images.unsplash.com/photo-1579758629938-03607ccdbaba?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .accent-color {
+            color: var(--accent-primary);
+        }
+        
+        .accent-bg {
+            background-color: var(--accent-primary);
+        }
+
+        .accent-gradient {
+            background-image: linear-gradient(to right, var(--accent-secondary), var(--accent-primary));
+        }
+        
+        .accent-border {
+            border-color: var(--accent-primary);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .quick-view {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .group:hover .quick-view {
+            opacity: 1;
+        }
+        
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 5px var(--accent-primary), 0 0 10px var(--accent-primary); }
+            50% { text-shadow: 0 0 10px var(--accent-primary), 0 0 20px var(--accent-primary); }
+        }
+
+        .glowing-text {
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        .testimonial-carousel {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        }
+
+        .testimonial-carousel::-webkit-scrollbar { 
+            display: none;  /* Safari and Chrome */
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Header -->
+    <header id="header" class="bg-black/80 backdrop-blur-sm sticky top-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-4">
+            <div id="header-inner" class="flex items-center justify-between h-24 transition-all duration-300">
+                <!-- Logo -->
+                <a href="#" class="text-4xl font-heading font-bold uppercase tracking-widest">
+                    KINETIC
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#new-arrivals" class="text-gray-300 hover:accent-color transition-colors duration-300 font-medium">New Arrivals</a>
+                    <a href="#collections" class="text-gray-300 hover:accent-color transition-colors duration-300 font-medium">Men</a>
+                    <a href="#collections" class="text-gray-300 hover:accent-color transition-colors duration-300 font-medium">Women</a>
+                    <a href="#collections" class="text-gray-300 hover:accent-color transition-colors duration-300 font-medium">Accessories</a>
+                </nav>
+
+                <!-- Icons -->
+                <div class="flex items-center space-x-5">
+                    <a href="#" class="text-gray-300 hover:accent-color transition-colors duration-300">
+                        <i data-lucide="search"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:accent-color transition-colors duration-300">
+                        <i data-lucide="user"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:accent-color transition-colors duration-300 relative">
+                        <i data-lucide="shopping-cart"></i>
+                        <span class="absolute -top-2 -right-2 accent-bg text-black text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                    </a>
+                    <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:accent-color transition-colors duration-300">
+                        <i data-lucide="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/90">
+            <a href="#new-arrivals" class="block py-3 px-4 text-sm text-gray-300 hover:bg-gray-800">New Arrivals</a>
+            <a href="#collections" class="block py-3 px-4 text-sm text-gray-300 hover:bg-gray-800">Men</a>
+            <a href="#collections" class="block py-3 px-4 text-sm text-gray-300 hover:bg-gray-800">Women</a>
+            <a href="#collections" class="block py-3 px-4 text-sm text-gray-300 hover:bg-gray-800">Accessories</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-[90vh] min-h-[600px] flex items-center justify-center text-center hero-bg">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" style="background: url(https://i.ytimg.com/vi/gey73xiS8F4/maxresdefault.jpg); background-repeat: no-repeat; background-size: cover; opacity: 0.2;"></div>
+            <div class="relative z-10 px-4 fade-in">
+                <h1 class="text-6xl md:text-8xl lg:text-9xl font-heading font-extrabold uppercase text-white tracking-wider leading-tight">
+                    Engineered for <span class="accent-color glowing-text">Performance</span>
+                </h1>
+                <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
+                    Unleash your potential with activewear designed to push boundaries. Premium fabrics, ultimate comfort, and unmatched style.
+                </p>
+                <a href="#new-arrivals"
+                    class="mt-8 inline-flex items-center group accent-bg text-black font-bold uppercase tracking-widest py-4 px-10 rounded-md hover:bg-white transition-all duration-300 transform hover:scale-105">
+                    Shop Now
+                    <i data-lucide="arrow-right" class="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Product Showcase: New Arrivals -->
+        <section id="new-arrivals" class="py-20 md:py-28" style="background-color: var(--bg-secondary);">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-5xl md:text-6xl font-heading font-bold uppercase tracking-wide">New Arrivals</h2>
+                    <p style="color: var(--text-secondary);" class="mt-2">Check out the latest drops from Kinetic.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Product Card 1 -->
+                    <div class="bg-[var(--bg-card)] rounded-lg overflow-hidden group product-card-hover fade-in" style="transition-delay: 100ms;">
+                        <div class="relative overflow-hidden">
+                            <img src="//fuaark.com/cdn/shop/files/Product-Photos-31-07-25-_03.jpg?v=1754029767&width=320" alt="Men's Training Tee" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <div class="absolute top-3 left-3 bg-red-600 text-white text-xs font-bold uppercase px-3 py-1 rounded-md">Sale</div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <div class="flex justify-center items-center space-x-2 mb-3">
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">S</span>
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">M</span>
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">L</span>
+                                        <span class="border-2 border-gray-400 bg-gray-400 text-black rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold">XL</span>
+                                    </div>
+                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5 text-center">
+                            <h3 class="font-semibold text-lg">TechVent Training Tee</h3>
+                            <p style="color: var(--text-secondary);" class="text-sm">Men's Performance Shirt</p>
+                            <div class="mt-3 flex justify-center items-baseline space-x-2">
+                                <span class="text-xl font-bold accent-color">$39.99</span>
+                                <span class="text-md text-gray-500 line-through">$49.99</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 2 -->
+                    <div class="bg-[var(--bg-card)] rounded-lg overflow-hidden group product-card-hover fade-in" style="transition-delay: 200ms;">
+                        <div class="relative overflow-hidden">
+                            <img src="//xtremexmartialarts.com/cdn/shop/collections/Xtreme_2_12021-scaled.jpg?v=1754034149&width=250" alt="Women's High-Waist Leggings" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <div class="absolute top-3 left-3 accent-bg text-black text-xs font-bold uppercase px-3 py-1 rounded-md">New</div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <div class="flex justify-center items-center space-x-2 mb-3">
+                                        <span class="border-2 border-gray-400 bg-gray-400 text-black rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold">XS</span>
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">S</span>
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">M</span>
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">L</span>
+                                    </div>
+                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5 text-center">
+                            <h3 class="font-semibold text-lg">AuraSculpt Leggings</h3>
+                            <p style="color: var(--text-secondary);" class="text-sm">Women's High-Waist Tights</p>
+                            <p class="mt-3 text-xl font-bold accent-color">$64.99</p>
+                        </div>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="bg-[var(--bg-card)] rounded-lg overflow-hidden group product-card-hover fade-in" style="transition-delay: 300ms;">
+                        <div class="relative overflow-hidden">
+                            <img src="//fuaark.com/cdn/shop/files/Category-Banners-_Mob_-_Jackets-_-Hoodies.jpg?v=1756552724" alt="Unisex Performance Hoodie" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105">
+                             <div style="background-color: var(--accent-secondary);" class="absolute top-3 left-3 text-white text-xs font-bold uppercase px-3 py-1 rounded-md">Limited</div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <div class="flex justify-center items-center space-x-2 mb-3">
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">S</span>
+                                        <span class="border-2 border-gray-400 bg-gray-400 text-black rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold">M</span>
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">L</span>
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">XL</span>
+                                    </div>
+                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5 text-center">
+                            <h3 class="font-semibold text-lg">Velocity Zip Hoodie</h3>
+                            <p style="color: var(--text-secondary);" class="text-sm">Unisex Performance Hoodie</p>
+                            <p class="mt-3 text-xl font-bold accent-color">$89.99</p>
+                        </div>
+                    </div>
+                    <!-- Product Card 4 -->
+                    <div class="bg-[var(--bg-card)] rounded-lg overflow-hidden group product-card-hover fade-in" style="transition-delay: 400ms;">
+                        <div class="relative overflow-hidden">
+                            <img src="//fuaark.com/cdn/shop/files/Category-Banners-_Mob_-_Shorts.jpg?v=1756552724" alt="Training Shorts" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105">
+                             <div class="absolute top-3 left-3 accent-bg text-black text-xs font-bold uppercase px-3 py-1 rounded-md">New</div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <div class="flex justify-center items-center space-x-2 mb-3">
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">S</span>
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">M</span>
+                                        <span class="border-2 border-gray-400 bg-gray-400 text-black rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold">L</span>
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">XL</span>
+                                    </div>
+                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5 text-center">
+                            <h3 class="font-semibold text-lg">Momentum 7" Shorts</h3>
+                            <p style="color: var(--text-secondary);" class="text-sm">Men's Athletic Shorts</p>
+                            <p class="mt-3 text-xl font-bold accent-color">$44.99</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Collections Section -->
+        <section id="collections" class="py-20 md:py-28" style="background-color: var(--bg-primary);">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-5xl md:text-6xl font-heading font-bold uppercase tracking-wide">Explore Collections</h2>
+                    <p style="color: var(--text-secondary);" class="mt-2">Curated gear for every aspect of your training.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                    <!-- Men's Collection -->
+                    <a href="#" class="relative h-96 rounded-lg overflow-hidden group fade-in" style="transition-delay: 100ms;">
+                        <div class="absolute inset-0 collection-bg-men group-hover:scale-110 transition-transform duration-500 ease-in-out"></div>
+                        <div class="absolute inset-0 bg-black/50"></div>
+                        <div class="relative h-full flex flex-col justify-end p-8 text-white">
+                            <h3 class="text-4xl font-heading font-semibold uppercase">Men's</h3>
+                            <div class="mt-2 w-20 h-1 accent-bg"></div>
+                            <p class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Shop Tees, Shorts & More</p>
+                        </div>
+                    </a>
+                    <!-- Women's Collection -->
+                    <a href="#" class="relative h-96 rounded-lg overflow-hidden group fade-in" style="transition-delay: 200ms;" style="background: url(//xtremexmartialarts.com/cdn/shop/files/Xtreme_7_12154.jpg?v=1753956118);">
+                        <div class="absolute inset-0 collection-bg-women group-hover:scale-110 transition-transform duration-500 ease-in-out"></div>
+                        <div class="absolute inset-0 bg-black/50"></div>
+                        <div class="relative h-full flex flex-col justify-end p-8 text-white">
+                            <h3 class="text-4xl font-heading font-semibold uppercase">Women's</h3>
+                            <div class="mt-2 w-20 h-1 accent-bg"></div>
+                            <p class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Shop Leggings, Bras & More</p>
+                        </div>
+                    </a>
+                    <!-- Combat Gear Collection -->
+                    <a href="#" class="relative h-96 rounded-lg overflow-hidden group fade-in" style="transition-delay: 300ms;">
+                         <div class="absolute inset-0 collection-bg-combat group-hover:scale-110 transition-transform duration-500 ease-in-out"></div>
+                        <div class="absolute inset-0 bg-black/50"></div>
+                        <div class="relative h-full flex flex-col justify-end p-8 text-white">
+                            <h3 class="text-4xl font-heading font-semibold uppercase">Combat Gear</h3>
+                            <div class="mt-2 w-20 h-1 accent-bg"></div>
+                            <p class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Shop Rashguards & Shorts</p>
+                        </div>
+                    </a>
+                    <!-- Accessories Collection -->
+                    <a href="#" class="relative h-96 rounded-lg overflow-hidden group fade-in" style="transition-delay: 400ms;">
+                         <div class="absolute inset-0 collection-bg-acc group-hover:scale-110 transition-transform duration-500 ease-in-out"></div>
+                        <div class="absolute inset-0 bg-black/50"></div>
+                        <div class="relative h-full flex flex-col justify-end p-8 text-white">
+                            <h3 class="text-4xl font-heading font-semibold uppercase">Accessories</h3>
+                            <div class="mt-2 w-20 h-1 accent-bg"></div>
+                            <p class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Shop Bags, Hats & More</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Value Section -->
+        <section style="background-color: var(--bg-secondary);" class="py-16">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center fade-in">
+                    <div class="flex flex-col items-center p-6">
+                        <i data-lucide="truck" class="accent-color h-12 w-12 mb-4"></i>
+                        <h4 class="font-bold text-xl uppercase tracking-wider">Free Shipping</h4>
+                        <p style="color: var(--text-secondary);" class="text-sm">On all orders over $100</p>
+                    </div>
+                    <div class="flex flex-col items-center p-6 border-x border-gray-800">
+                        <i data-lucide="shield-check" class="accent-color h-12 w-12 mb-4"></i>
+                        <h4 class="font-bold text-xl uppercase tracking-wider">Money-Back Guarantee</h4>
+                        <p style="color: var(--text-secondary);" class="text-sm">30-day return policy</p>
+                    </div>
+                    <div class="flex flex-col items-center p-6">
+                        <i data-lucide="lock" class="accent-color h-12 w-12 mb-4"></i>
+                        <h4 class="font-bold text-xl uppercase tracking-wider">Secure Checkout</h4>
+                        <p style="color: var(--text-secondary);" class="text-sm">SSL-encrypted payments</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Social Proof / Story Section -->
+        <section class="py-20 md:py-28" style="background-color: var(--bg-primary);">
+            <div class="container mx-auto px-4">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <!-- Brand Mission -->
+                    <div class="text-center lg:text-left fade-in">
+                        <h2 class="text-5xl md:text-6xl font-heading font-bold uppercase tracking-wide">Our Mission</h2>
+                        <div class="mt-4 w-24 h-1.5 accent-bg mx-auto lg:mx-0"></div>
+                        <p class="mt-6 text-lg text-gray-300 leading-relaxed">
+                            At Kinetic, we believe that your gear should be the last thing on your mind. We are obsessed with creating high-performance apparel that seamlessly blends function and form. Every stitch, fabric, and design is engineered to support your journey, empowering you to break barriers and achieve your peak potential. We're not just a brand; we're your partner in performance.
+                        </p>
+                    </div>
+                    <!-- Testimonials Carousel -->
+                    <div class="fade-in" style="transition-delay: 200ms;">
+                         <h3 class="text-3xl font-heading font-semibold text-center mb-6">What Our Athletes Say</h3>
+                        <div class="relative overflow-hidden">
+                            <div class="flex overflow-x-auto snap-x snap-mandatory testimonial-carousel pb-4">
+                                <!-- Testimonial 1 -->
+                                <div class="snap-center flex-shrink-0 w-full md:w-5/6 mx-auto px-4">
+                                    <div class="bg-[var(--bg-card)] p-8 rounded-lg">
+                                        <p class="text-gray-300 italic">"The quality is insane. I've put my Kinetic gear through hell and back, and it still looks and feels brand new. Best training apparel I've ever owned."</p>
+                                        <div class="flex items-center mt-6">
+                                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop" class="w-12 h-12 rounded-full object-cover" alt="Reviewer 1">
+                                            <div class="ml-4">
+                                                <p class="font-bold text-white">Alex Johnson</p>
+                                                <p class="text-sm accent-color">Pro MMA Fighter</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Testimonial 2 -->
+                                <div class="snap-center flex-shrink-0 w-full md:w-5/6 mx-auto px-4">
+                                    <div class="bg-[var(--bg-card)] p-8 rounded-lg">
+                                        <p class="text-gray-300 italic">"Finally, leggings that don't slip during squats! The fit is perfect and the fabric is so comfortable. I'm obsessed and need every color."</p>
+                                        <div class="flex items-center mt-6">
+                                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop" class="w-12 h-12 rounded-full object-cover" alt="Reviewer 2">
+                                            <div class="ml-4">
+                                                <p class="font-bold text-white">Maria Rodriguez</p>
+                                                <p class="text-sm accent-color">CrossFit Athlete</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Testimonial 3 -->
+                                 <div class="snap-center flex-shrink-0 w-full md:w-5/6 mx-auto px-4">
+                                    <div class="bg-[var(--bg-card)] p-8 rounded-lg">
+                                        <p class="text-gray-300 italic">"From the gym to the street, this gear performs. The designs are modern and sleek, and the comfort is next-level. Highly recommended."</p>
+                                        <div class="flex items-center mt-6">
+                                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop" class="w-12 h-12 rounded-full object-cover" alt="Reviewer 3">
+                                            <div class="ml-4">
+                                                <p class="font-bold text-white">David Chen</p>
+                                                <p class="text-sm accent-color">Personal Trainer</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Instagram Section -->
+        <section id="instagram" class="py-20 md:py-28" style="background-color: var(--bg-secondary);">
+            <div class="container mx-auto px-4">
+                 <div class="text-center mb-12 fade-in">
+                    <h2 class="text-5xl md:text-6xl font-heading font-bold uppercase tracking-wide">Shop The <span class="accent-color">'Gram</span></h2>
+                    <p style="color: var(--text-secondary);" class="mt-2">Tag #KineticWear to be featured</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 fade-in">
+                    <a href="#" class="group relative aspect-square overflow-hidden rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1574680178-5420211b4a48?q=80&w=1964&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"/>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i data-lucide="instagram" class="text-white w-10 h-10"></i>
+                        </div>
+                    </a>
+                    <a href="#" class="group relative aspect-square overflow-hidden rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1549576490-415858d5d59a?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"/>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i data-lucide="instagram" class="text-white w-10 h-10"></i>
+                        </div>
+                    </a>
+                    <a href="#" class="group relative aspect-square overflow-hidden rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"/>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i data-lucide="instagram" class="text-white w-10 h-10"></i>
+                        </div>
+                    </a>
+                    <a href="#" class="group relative aspect-square overflow-hidden rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"/>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i data-lucide="instagram" class="text-white w-10 h-10"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Brand Info -->
+                <div class="md:col-span-2">
+                    <h4 class="text-2xl font-heading font-bold uppercase tracking-widest">KINETIC</h4>
+                    <p class="mt-4 text-gray-400 max-w-sm">Performance-driven activewear to help you conquer your goals.</p>
+                     <div class="flex space-x-4 mt-6">
+                        <a href="#" class="text-gray-500 hover:accent-color"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="text-gray-500 hover:accent-color"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="text-gray-500 hover:accent-color"><i data-lucide="facebook"></i></a>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h5 class="font-bold uppercase text-gray-200 tracking-wider">Support</h5>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:accent-color transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:accent-color transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:accent-color transition-colors">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:accent-color transition-colors">Policies</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h5 class="font-bold uppercase text-gray-200 tracking-wider">Join the Community</h5>
+                    <p class="mt-4 text-gray-400 text-sm">Get exclusive offers and early access to new drops.</p>
+                    <form class="mt-4 flex">
+                        <input type="email" placeholder="Enter your email" class="w-full bg-[#1F1F1F] text-white px-4 py-2 rounded-l-md focus:outline-none focus:ring-2 focus:ring-inset focus:accent-border">
+                        <button type="submit" class="accent-bg text-black px-4 rounded-r-md font-bold hover:bg-white transition-colors">Go</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-500 text-sm">&copy; 2025 Kinetic Wear. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Fade-in on Scroll Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        const fadeInElements = document.querySelectorAll('.fade-in');
+        fadeInElements.forEach(el => observer.observe(el));
+        
+        // Sticky Header shrink on scroll
+        const headerInner = document.getElementById('header-inner');
+        window.onscroll = function() {
+            if (window.scrollY > 50) {
+                headerInner.classList.remove('h-24');
+                headerInner.classList.add('h-20');
+            } else {
+                headerInner.classList.remove('h-20');
+                headerInner.classList.add('h-24');
+            }
+        };
+
+    </script>
+</body>
+
+</html>
+

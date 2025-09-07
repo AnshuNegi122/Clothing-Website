@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA - Modern Aesthetic Apparel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e5e5e5;
+        }
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            animation: kenburns 20s infinite;
+        }
+        .hero-slide.active {
+            opacity: 1;
+        }
+        /* Add a Ken Burns effect for subtle movement */
+        @keyframes kenburns {
+            0% {
+                transform: scale(1) translate(0, 0);
+            }
+            50% {
+                transform: scale(1.1) translate(-1%, 1%);
+            }
+            100% {
+                transform: scale(1) translate(0, 0);
+            }
+        }
+        /* Stagger the animation for each slide */
+        .hero-slide:nth-child(2) { animation-delay: 5s; }
+        .hero-slide:nth-child(3) { animation-delay: 10s; }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        .product-card:hover .product-hover-overlay {
+            opacity: 1;
+        }
+        .product-image {
+            transition: transform 0.3s ease-in-out;
+        }
+        .product-hover-overlay {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 50%;
+            background-color: #e5e5e5;
+            transition: all 0.3s ease-in-out;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .category-card img {
+            transition: transform 0.4s ease-in-out;
+        }
+        .category-card:hover img {
+            transform: scale(1.05);
+        }
+        .category-card .arrow-circle {
+            transition: all 0.3s ease-in-out;
+        }
+        .category-card:hover .arrow-circle {
+            background-color: white;
+            color: black;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        /* Scrolling Marquee Animation */
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-scroll-left {
+            animation: scroll-left 40s linear infinite;
+        }
+        .text-outline-white {
+            color: transparent;
+            -webkit-text-stroke: 1px white;
+            text-stroke: 1px white;
+        }
+         .text-outline-black {
+            color: transparent;
+            -webkit-text-stroke: 1px #1f2937;
+            text-stroke: 1px #1f2937;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Announcement Bar -->
+    <div class="bg-white text-black py-2 text-center text-sm font-medium">
+        <p>FREE SHIPPING ON ALL ORDERS OVER $75</p>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-black/80 backdrop-blur-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-20">
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white">
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+
+                <!-- Logo -->
+                <div class="flex-shrink-0 absolute left-1/2 -translate-x-1/2 md:static md:left-0 md:translate-x-0">
+                    <a href="#" class="text-2xl font-black tracking-widest text-white">AURA</a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex md:items-center md:space-x-8">
+                    <a href="#new-arrivals" class="nav-link text-gray-300 hover:text-white">New Arrivals</a>
+                    <a href="#collections" class="nav-link text-gray-300 hover:text-white">Collections</a>
+                    <a href="#" class="nav-link text-gray-300 hover:text-white">Tops</a>
+                    <a href="#" class="nav-link text-gray-300 hover:text-white">Bottoms</a>
+                </nav>
+
+                <!-- Icons -->
+                <div class="flex items-center space-x-5">
+                    <a href="#" class="text-gray-300 hover:text-white"><i data-lucide="search" class="h-5 w-5"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-white"><i data-lucide="user" class="h-5 w-5"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-white relative">
+                        <i data-lucide="shopping-bag" class="h-5 w-5"></i>
+                        <span class="absolute -top-2 -right-2 bg-white text-black text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <nav class="px-4 pt-2 pb-4 space-y-2">
+                <a href="#new-arrivals" class="block py-2 text-gray-300 hover:text-white">New Arrivals</a>
+                <a href="#collections" class="block py-2 text-gray-300 hover:text-white">Collections</a>
+                <a href="#" class="block py-2 text-gray-300 hover:text-white">Tops</a>
+                <a href="#" class="block py-2 text-gray-300 hover:text-white">Bottoms</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-screen min-h-[700px] flex items-center justify-center text-center text-white overflow-hidden">
+            <!-- Background Slider -->
+            <div class="absolute inset-0 w-full h-full">
+                <div class="hero-slide" style="background-image: url('./images/gpt1.png');"></div>
+                
+                <div class="hero-slide" style="background-image: url('./images/hero1.png');"></div>
+                <div class="hero-slide" style="background-image: url('./images/hero2.png');"></div>
+                <div class="hero-slide" style="background-image: url('./images/hero3.png');"></div>
+                <!-- <div class="hero-slide" style="background-image: url('https://placehold.co/1920x1080/111111/e5e5e5?text=GRUNGE');"></div>
+                <div class="hero-slide" style="background-image: url('https://placehold.co/1920x1080/222222/e5e5e5?text=URBAN');"></div>
+                <div class="hero-slide" style="background-image: url('https://placehold.co/1920x1080/0a0a0a/e5e5e5?text=STEALTH');"></div> -->
+            </div>
+
+            <!-- Hero Content -->
+            <div class="relative z-10 bg-black/50 p-8 rounded-lg">
+                <h1 class="text-5xl md:text-8xl font-black uppercase tracking-tighter">Define Your Aesthetic</h1>
+                <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto text-gray-300">Curated pieces for the modern individual. Style that speaks before you do.</p>
+                <a href="#new-arrivals" class="mt-8 inline-block bg-white text-black font-bold uppercase tracking-widest py-4 px-10 rounded-md hover:bg-gray-200 transition duration-300">
+                    Explore Collection
+                </a>
+            </div>
+        </section>
+
+        <!-- New Arrivals Section -->
+        <section id="new-arrivals" class="py-20 md:py-32">
+            <div class="container mx-auto px-4">
+                <h2 class="text-center text-4xl font-bold uppercase tracking-wider">New Arrivals</h2>
+                <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Product Card 1 -->
+                    <div class="product-card group relative overflow-hidden rounded-md">
+                        <div class="overflow-hidden">
+                           <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Aesthetic black t-shirt on a model" class="product-image w-full h-full object-cover">
+                        </div>
+                        <div class="absolute inset-0 bg-black/50 product-hover-overlay opacity-0 flex items-center justify-center p-4">
+                            <button class="bg-white text-black font-bold uppercase tracking-widest py-3 px-6 rounded-md text-sm">Quick View</button>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/80 to-transparent">
+                            <h3 class="font-semibold text-lg">Oversized Tee</h3>
+                            <p class="text-md font-bold">$45.00</p>
+                        </div>
+                    </div>
+                    <!-- Product Card 2 -->
+                    <div class="product-card group relative overflow-hidden rounded-md">
+                        <div class="overflow-hidden">
+                           <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Stylish cargo pants" class="product-image w-full h-full object-cover">
+                        </div>
+                        <div class="absolute inset-0 bg-black/50 product-hover-overlay opacity-0 flex items-center justify-center p-4">
+                            <button class="bg-white text-black font-bold uppercase tracking-widest py-3 px-6 rounded-md text-sm">Quick View</button>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/80 to-transparent">
+                            <h3 class="font-semibold text-lg">Utility Cargos</h3>
+                            <p class="text-md font-bold">$85.00</p>
+                        </div>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="product-card group relative overflow-hidden rounded-md">
+                         <div class="overflow-hidden">
+                           <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Minimalist hoodie" class="product-image w-full h-full object-cover">
+                        </div>
+                        <div class="absolute inset-0 bg-black/50 product-hover-overlay opacity-0 flex items-center justify-center p-4">
+                            <button class="bg-white text-black font-bold uppercase tracking-widest py-3 px-6 rounded-md text-sm">Quick View</button>
+                        </div>
+                         <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/80 to-transparent">
+                            <h3 class="font-semibold text-lg">Core Hoodie</h3>
+                            <p class="text-md font-bold">$110.00</p>
+                        </div>
+                    </div>
+                    <!-- Product Card 4 -->
+                    <div class="product-card group relative overflow-hidden rounded-md">
+                        <div class="overflow-hidden">
+                           <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Modernist jacket" class="product-image w-full h-full object-cover">
+                        </div>
+                        <div class="absolute inset-0 bg-black/50 product-hover-overlay opacity-0 flex items-center justify-center p-4">
+                            <button class="bg-white text-black font-bold uppercase tracking-widest py-3 px-6 rounded-md text-sm">Quick View</button>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/80 to-transparent">
+                            <h3 class="font-semibold text-lg">Tech Jacket</h3>
+                            <p class="text-md font-bold">$150.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Categories Section -->
+        <section id="categories" class="py-20 md:py-32 bg-[#121212]">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold">Join The AURA Community, Where Style Meets Substance.</h2>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <a href="#" class="category-card group relative aspect-[3/4] rounded-md overflow-hidden block">
+                        <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="T-shirts category" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full flex items-center justify-between text-white">
+                            <h3 class="text-2xl font-bold uppercase tracking-wider">T-Shirts</h3>
+                            <div class="arrow-circle h-12 w-12 border-2 border-white rounded-full flex items-center justify-center">
+                                <i data-lucide="arrow-right" class="h-6 w-6"></i>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="category-card group relative aspect-[3/4] rounded-md overflow-hidden block">
+                        <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Stringers category" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full flex items-center justify-between text-white">
+                            <h3 class="text-2xl font-bold uppercase tracking-wider">Stringers</h3>
+                            <div class="arrow-circle h-12 w-12 border-2 border-white rounded-full flex items-center justify-center">
+                                <i data-lucide="arrow-right" class="h-6 w-6"></i>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="category-card group relative aspect-[3/4] rounded-md overflow-hidden block">
+                        <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Shorts category" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full flex items-center justify-between text-white">
+                            <h3 class="text-2xl font-bold uppercase tracking-wider">Shorts</h3>
+                            <div class="arrow-circle h-12 w-12 border-2 border-white rounded-full flex items-center justify-center">
+                                <i data-lucide="arrow-right" class="h-6 w-6"></i>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="category-card group relative aspect-[3/4] rounded-md overflow-hidden block">
+                        <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Joggers category" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full flex items-center justify-between text-white">
+                            <h3 class="text-2xl font-bold uppercase tracking-wider">Joggers</h3>
+                            <div class="arrow-circle h-12 w-12 border-2 border-white rounded-full flex items-center justify-center">
+                                <i data-lucide="arrow-right" class="h-6 w-6"></i>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="category-card group relative aspect-[3/4] rounded-md overflow-hidden block">
+                        <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Jackets & Hoodies category" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full flex items-center justify-between text-white">
+                            <h3 class="text-2xl font-bold uppercase tracking-wider">Hoodies</h3>
+                            <div class="arrow-circle h-12 w-12 border-2 border-white rounded-full flex items-center justify-center">
+                                <i data-lucide="arrow-right" class="h-6 w-6"></i>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="category-card group relative aspect-[3/4] rounded-md overflow-hidden block">
+                        <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Accessories category" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full flex items-center justify-between text-white">
+                            <h3 class="text-2xl font-bold uppercase tracking-wider">Accessories</h3>
+                            <div class="arrow-circle h-12 w-12 border-2 border-white rounded-full flex items-center justify-center">
+                                <i data-lucide="arrow-right" class="h-6 w-6"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Reels Section -->
+        <section class="py-20 md:py-32">
+            <div class="container mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-sm uppercase tracking-widest font-semibold text-gray-400">See What's Trending</h2>
+                </div>
+                <div class="flex space-x-4 lg:space-x-6 overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide">
+                    <!-- Reel 1 -->
+                    <div class="snap-center flex-shrink-0 w-52 sm:w-60 lg:w-72">
+                        <a href="#" class="group relative block w-full aspect-[9/16] rounded-lg overflow-hidden shadow-xl">
+                            <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Trending video reel of summer joggers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                <i data-lucide="play-circle" class="h-16 w-16 text-white/70"></i>
+                            </div>
+                            <p class="absolute bottom-4 left-4 text-white font-bold">Must have summer joggers</p>
+                        </a>
+                    </div>
+                    <!-- Reel 2 -->
+                    <div class="snap-center flex-shrink-0 w-52 sm:w-60 lg:w-72">
+                        <a href="#" class="group relative block w-full aspect-[9/16] rounded-lg overflow-hidden shadow-xl">
+                            <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Trending video reel of new track pants" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                <i data-lucide="play-circle" class="h-16 w-16 text-white/70"></i>
+                            </div>
+                            <p class="absolute bottom-4 left-4 text-white font-bold">You can't miss these</p>
+                        </a>
+                    </div>
+                    <!-- Reel 3 -->
+                    <div class="snap-center flex-shrink-0 w-52 sm:w-60 lg:w-72">
+                         <a href="#" class="group relative block w-full aspect-[9/16] rounded-lg overflow-hidden shadow-xl">
+                            <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Trending video reel of clothing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                <i data-lucide="play-circle" class="h-16 w-16 text-white/70"></i>
+                            </div>
+                            <p class="absolute bottom-4 left-4 text-white font-bold">Found the perfect fit</p>
+                        </a>
+                    </div>
+                    <!-- Reel 4 -->
+                     <div class="snap-center flex-shrink-0 w-52 sm:w-60 lg:w-72">
+                         <a href="#" class="group relative block w-full aspect-[9/16] rounded-lg overflow-hidden shadow-xl">
+                            <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Trending video reel of branded joggers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                <i data-lucide="play-circle" class="h-16 w-16 text-white/70"></i>
+                            </div>
+                            <p class="absolute bottom-4 left-4 text-white font-bold">BRAND CALLED AURA</p>
+                        </a>
+                    </div>
+                     <!-- Reel 5 -->
+                    <div class="snap-center flex-shrink-0 w-52 sm:w-60 lg:w-72">
+                         <a href="#" class="group relative block w-full aspect-[9/16] rounded-lg overflow-hidden shadow-xl">
+                            <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Trending video reel of a gym fit" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                <i data-lucide="play-circle" class="h-16 w-16 text-white/70"></i>
+                            </div>
+                            <p class="absolute bottom-4 left-4 text-white font-bold">Gym fit check</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sale Banner Section -->
+        <section class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="relative rounded-lg overflow-hidden flex items-center min-h-[400px] md:min-h-[500px] bg-cover bg-center" style="background-image: url('https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200');">
+                    <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-black/30"></div>
+                    <div class="relative z-10 p-8 md:p-16 w-full md:w-1/2">
+                        <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter">
+                            GET UP TO <br><span class="text-blue-400">50% OFF</span>
+                        </h2>
+                        <p class="mt-4 text-2xl font-bold uppercase tracking-widest text-gray-200">Own Your Grind</p>
+                        <a href="#" class="mt-8 inline-block border-2 border-white text-white font-bold uppercase tracking-widest py-3 px-10 rounded-sm hover:bg-white hover:text-black transition duration-300">
+                            Shop Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Oversize Collection Section -->
+        <section class="py-20 md:py-32 bg-[#121212]">
+            <div class="container mx-auto px-4">
+                <div class="text-left mb-12">
+                    <p class="text-sm uppercase tracking-widest text-gray-400">Oversize</p>
+                    <h2 class="text-4xl font-bold uppercase tracking-wider mt-1">Collection</h2>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Product Card 1 -->
+                    <div class="text-left group">
+                        <a href="#" class="block">
+                            <div class="overflow-hidden rounded-md mb-4">
+                               <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Oversized T-shirt" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="font-semibold text-lg">Inspiration Oversized T-shirt</h3>
+                            <p class="text-gray-400 text-sm">Oversized Fit</p>
+                            <p class="font-bold mt-1">$60.00</p>
+                        </a>
+                    </div>
+                    <!-- Product Card 2 -->
+                    <div class="text-left group">
+                         <a href="#" class="block">
+                            <div class="overflow-hidden rounded-md mb-4">
+                               <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Oversized T-shirt" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="font-semibold text-lg">Gross Oversized T-shirt</h3>
+                             <p class="text-gray-400 text-sm">Oversized Fit</p>
+                            <p class="font-bold mt-1">$65.00</p>
+                        </a>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="text-left group">
+                         <a href="#" class="block">
+                            <div class="overflow-hidden rounded-md mb-4">
+                               <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Oversized Joggers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="font-semibold text-lg">Signature Oversized Joggers</h3>
+                             <p class="text-gray-400 text-sm">Oversized Fit</p>
+                            <p class="font-bold mt-1">$90.00</p>
+                        </a>
+                    </div>
+                    <!-- Product Card 4 -->
+                    <div class="text-left group">
+                         <a href="#" class="block">
+                            <div class="overflow-hidden rounded-md mb-4">
+                               <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Straight Tracks" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="font-semibold text-lg">Straight Tracks</h3>
+                             <p class="text-gray-400 text-sm">Relaxed Fit</p>
+                            <p class="font-bold mt-1">$80.00</p>
+                        </a>
+                    </div>
+                    <!-- Product Card 5 -->
+                    <div class="text-left group">
+                         <a href="#" class="block">
+                            <div class="overflow-hidden rounded-md mb-4">
+                               <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Oversized T-shirt" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="font-semibold text-lg">Eagle Oversized T-shirt</h3>
+                             <p class="text-gray-400 text-sm">Oversized Fit</p>
+                            <p class="font-bold mt-1">$60.00</p>
+                        </a>
+                    </div>
+                    <!-- Product Card 6 -->
+                    <div class="text-left group">
+                         <a href="#" class="block">
+                            <div class="overflow-hidden rounded-md mb-4">
+                               <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Oversized T-shirt" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="font-semibold text-lg">Sword Oversized T-shirt</h3>
+                             <p class="text-gray-400 text-sm">Oversized Fit</p>
+                            <p class="font-bold mt-1">$65.00</p>
+                        </a>
+                    </div>
+                    <!-- Product Card 7 -->
+                    <div class="text-left group">
+                         <a href="#" class="block">
+                            <div class="overflow-hidden rounded-md mb-4">
+                               <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Straight Tracks" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <h3 class="font-semibold text-lg">Icarus Straight Tracks</h3>
+                             <p class="text-gray-400 text-sm">Relaxed Fit</p>
+                            <p class="font-bold mt-1">$95.00</p>
+                        </a>
+                    </div>
+                    <!-- View Collection Card -->
+                    <a href="#" class="group relative aspect-[3/4] rounded-md overflow-hidden block">
+                        <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" alt="Oversized Collection" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center rounded-md text-center p-4">
+                            <h3 class="font-black text-2xl uppercase tracking-wider text-white">Oversized Collection</h3>
+                            <p class="text-sm underline mt-2 text-white/80 group-hover:text-white transition">View Collection</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shop Joggers Section -->
+        <section class="py-20 md:py-32 bg-[#121212]">
+            <div class="container mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="text-center md:text-left">
+                        <p class="text-sm uppercase tracking-widest text-gray-400">Shop Joggers</p>
+                        <h2 class="text-4xl font-bold mt-2">Redefine Versatility & Functionality!</h2>
+                        <a href="#" class="mt-6 inline-block font-semibold group">
+                            Explore Category
+                            <i data-lucide="arrow-right" class="inline-block h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" class="rounded-md shadow-lg">
+                            <p class="font-semibold mt-4">Black Urban Trackpants</p>
+                            <p class="text-gray-400">$75.00</p>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" class="rounded-md shadow-lg">
+                             <p class="font-semibold mt-4">Blue Urban Trackpants</p>
+                            <p class="text-gray-400">$75.00</p>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" class="rounded-md shadow-lg">
+                             <p class="font-semibold mt-4">Grey Urban Trackpants</p>
+                            <p class="text-gray-400">$75.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scrolling Categories & Trust Badges Section -->
+        <section class="py-20 md:py-32 bg-[#121212] overflow-hidden">
+            <div class="relative w-full py-12">
+                <div class="flex animate-scroll-left">
+                    <!-- Marquee content -->
+                    <div class="flex items-center space-x-16 flex-shrink-0 px-8">
+                        <div class="relative h-48 flex items-center">
+                            <h2 class="text-7xl lg:text-9xl font-black uppercase text-outline-white whitespace-nowrap">Hoodies</h2>
+                            <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" class="absolute -top-12 right-0 h-40 w-auto rounded-lg shadow-lg transform -rotate-6 z-10" alt="Model in a hoodie">
+                        </div>
+                        <div class="relative h-48 flex items-center">
+                            <h2 class="text-7xl lg:text-9xl font-black uppercase text-outline-white whitespace-nowrap">Joggers</h2>
+                            <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" class="absolute -bottom-16 left-1/2 -translate-x-1/2 h-48 w-auto rounded-lg shadow-lg transform rotate-3 z-10" alt="Model in joggers">
+                        </div>
+                        <div class="relative h-48 flex items-center">
+                            <h2 class="text-7xl lg:text-9xl font-black uppercase text-outline-white whitespace-nowrap">Tshirts</h2>
+                            <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" class="absolute -top-10 left-10 h-44 w-auto rounded-lg shadow-lg transform -rotate-2 z-10" alt="Model in a t-shirt">
+                        </div>
+                         <div class="relative h-48 flex items-center">
+                            <h2 class="text-7xl lg:text-9xl font-black uppercase text-outline-white whitespace-nowrap">Tank Tops</h2>
+                            <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" class="absolute -bottom-12 right-0 h-40 w-auto rounded-lg shadow-lg transform rotate-6 z-10" alt="Model in a tank top">
+                        </div>
+                    </div>
+                     <!-- Duplicated Marquee content for seamless scroll -->
+                    <div class="flex items-center space-x-16 flex-shrink-0 px-8">
+                        <div class="relative h-48 flex items-center">
+                            <h2 class="text-7xl lg:text-9xl font-black uppercase text-outline-white whitespace-nowrap">Hoodies</h2>
+                            <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" class="absolute -top-12 right-0 h-40 w-auto rounded-lg shadow-lg transform -rotate-6 z-10" alt="Model in a hoodie">
+                        </div>
+                        <div class="relative h-48 flex items-center">
+                            <h2 class="text-7xl lg:text-9xl font-black uppercase text-outline-white whitespace-nowrap">Joggers</h2>
+                            <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" class="absolute -bottom-16 left-1/2 -translate-x-1/2 h-48 w-auto rounded-lg shadow-lg transform rotate-3 z-10" alt="Model in joggers">
+                        </div>
+                        <div class="relative h-48 flex items-center">
+                            <h2 class="text-7xl lg:text-9xl font-black uppercase text-outline-white whitespace-nowrap">Tshirts</h2>
+                            <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" class="absolute -top-10 left-10 h-44 w-auto rounded-lg shadow-lg transform -rotate-2 z-10" alt="Model in a t-shirt">
+                        </div>
+                         <div class="relative h-48 flex items-center">
+                            <h2 class="text-7xl lg:text-9xl font-black uppercase text-outline-white whitespace-nowrap">Tank Tops</h2>
+                            <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" class="absolute -bottom-12 right-0 h-40 w-auto rounded-lg shadow-lg transform rotate-6 z-10" alt="Model in a tank top">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust Badges -->
+            <div class="container mx-auto px-4 mt-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div class="bg-gray-900/50 p-8 rounded-lg flex items-start space-x-6">
+                        <div class="flex-shrink-0">
+                            <i data-lucide="truck" class="h-8 w-8 text-gray-300"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">Free Shipping</h3>
+                            <p class="text-gray-400 mt-1">Your orders are delivered safely and without any additional charges.</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900/50 p-8 rounded-lg flex items-start space-x-6">
+                         <div class="flex-shrink-0">
+                            <i data-lucide="shield-check" class="h-8 w-8 text-gray-300"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">100% Secure</h3>
+                            <p class="text-gray-400 mt-1">We use secure payment systems to protect your information at all times.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section class="py-20 md:py-32 bg-[#121212] border-t border-gray-800">
+            <div class="container mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="text-center md:text-left">
+                        <p class="text-sm uppercase tracking-widest text-gray-400">Join the Aura Community</p>
+                        <h2 class="text-4xl font-black mt-2 uppercase tracking-wider">AURA ATHLEISURE</h2>
+                        <p class="mt-4 text-gray-400 max-w-md mx-auto md:mx-0">We're a vibrant community uniting style and functionality seamlessly. Whether you're sweating it out at the gym or chilling with friends, our versatile wear keeps you looking sharp and feeling comfortable.</p>
+                         <a href="#" class="mt-8 inline-block bg-white text-black font-bold uppercase tracking-widest py-4 px-10 rounded-md hover:bg-gray-200 transition duration-300">
+                            Join The Community
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-2 grid-rows-2 gap-4 h-96">
+                        <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" class="row-span-2 h-full w-full object-cover rounded-md shadow-lg">
+                        <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" class="h-full w-full object-cover rounded-md shadow-lg">
+                        <img src="https://fuaark.com/cdn/shop/files/FUAARK_BEST_GYM_WEAR_BRAND_IN_INDIA_101.jpg?v=1748930404&width=3200" class="h-full w-full object-cover rounded-md shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Signup -->
+        <section class="bg-black py-20 border-t border-gray-800">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold uppercase">Join The Inner Circle</h2>
+                <p class="mt-2 text-gray-400">Get 10% off your first order and stay updated on new drops & exclusive offers.</p>
+                <form class="mt-8 max-w-md mx-auto flex">
+                    <input type="email" placeholder="Enter your email" class="w-full px-4 py-3 bg-gray-900 text-white placeholder-gray-500 border border-gray-700 rounded-l-md focus:outline-none focus:ring-2 focus:ring-white" required>
+                    <button type="submit" class="bg-white text-black font-bold uppercase tracking-widest py-3 px-6 rounded-r-md hover:bg-gray-200 transition duration-300">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="font-bold text-lg uppercase">Shop</h4>
+                    <ul class="mt-4 space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">New Arrivals</a></li>
+                        <li><a href="#" class="hover:text-white">Tops</a></li>
+                        <li><a href="#" class="hover:text-white">Bottoms</a></li>
+                        <li><a href="#" class="hover:text-white">Accessories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg uppercase">Info</h4>
+                    <ul class="mt-4 space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">About Us</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                        <li><a href="#" class="hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="hover:text-white">Size Guide</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg uppercase">Support</h4>
+                    <ul class="mt-4 space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Shipping & Returns</a></li>
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg uppercase">Connect</h4>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-lucide="instagram" class="h-6 w-6"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-lucide="twitter" class="h-6 w-6"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-lucide="facebook" class="h-6 w-6"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-500">
+                <p>&copy; 2024 AURA. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Mobile Menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Hero Slider
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+
+        function showNextSlide() {
+            if (slides.length === 0) return;
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        if (slides.length > 0) {
+            slides[0].classList.add('active');
+            setInterval(showNextSlide, 5000); // Change slide every 5 seconds
+        }
+    </script>
+</body>
+</html>
+
