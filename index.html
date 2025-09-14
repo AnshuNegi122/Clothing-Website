@@ -1,235 +1,892 @@
-<!-- ... existing code ... -->
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <meta name="description" content="Shop Kinetic Wear – premium gym apparel and activewear engineered for performance. Explore men's & women's t-shirts, leggings, hoodies, shorts, and accessories designed for style, comfort, and durability.">
+    <title>Kinetic Wear | Premium Activewear & Gym Clothing for Men & Women</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #181818;
+            --bg-card: #1F1F1F;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a3a3a3;
+            --accent-primary: #39ff14; /* Neon Green */
+            --accent-secondary: #ff4500; /* Orange-Red */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .font-heading {
+            font-family: 'Teko', sans-serif;
+        }
+
+        .hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1581009137042-c552b485697a?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center 30%;
+        }
+        
+        .collection-bg-men {
+             background-image: url('https://images.unsplash.com/photo-1548690312-e3b511d5b111?q=80&w=1974&auto=format&fit=crop');
+             background-size: cover;
+             background-position: center;
+        }
+        
+        .collection-bg-women {
+            background-image: url('https://images.unsplash.com/photo-1584735935639-5fb3a7e58f3b?q=80&w=1974&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .collection-bg-combat {
+            background-image: url('https://images.unsplash.com/photo-1599496495393-a5b5dd518bee?q=80&w=1974&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .collection-bg-acc {
+            background-image: url('https://images.unsplash.com/photo-1579758629938-03607ccdbaba?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .accent-color {
+            color: var(--accent-primary);
+        }
+        
+        .accent-bg {
+            background-color: var(--accent-primary);
+        }
+
+        .accent-gradient {
+            background-image: linear-gradient(to right, var(--accent-secondary), var(--accent-primary));
+        }
+        
+        .accent-border {
+            border-color: var(--accent-primary);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .quick-view {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .group:hover .quick-view {
+            opacity: 1;
+        }
+        
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 5px var(--accent-primary), 0 0 10px var(--accent-primary); }
+            50% { text-shadow: 0 0 10px var(--accent-primary), 0 0 20px var(--accent-primary); }
+        }
+
+        .glowing-text {
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        #testimonial-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        #testimonial-container {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        .video-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100;
+            transform: translateX(-50%) translateY(-50%);
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Header -->
+    <header id="header" class="bg-black/80 backdrop-blur-sm sticky top-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-4">
+            <div id="header-inner" class="flex items-center justify-between h-24 transition-all duration-300">
+                <!-- Logo -->
+                <a href="#" class="text-4xl font-heading font-bold uppercase tracking-widest">
+                    KINETIC
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#new-arrivals" class="text-gray-300 hover:accent-color transition-colors duration-300 font-medium">New Arrivals</a>
+                    <a href="#men-products" class="text-gray-300 hover:accent-color transition-colors duration-300 font-medium">Men</a>
+                    <a href="#women-products" class="text-gray-300 hover:accent-color transition-colors duration-300 font-medium">Women</a>
+                    <a href="#collections" class="text-gray-300 hover:accent-color transition-colors duration-300 font-medium">Collections</a>
+                </nav>
+
+                <!-- Icons -->
+                <div class="flex items-center space-x-5">
+                    <a href="#" class="text-gray-300 hover:accent-color transition-colors duration-300">
+                        <i data-lucide="search"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:accent-color transition-colors duration-300">
+                        <i data-lucide="user"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:accent-color transition-colors duration-300 relative">
+                        <i data-lucide="shopping-cart"></i>
+                        <span class="absolute -top-2 -right-2 accent-bg text-black text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                    </a>
+                    <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:accent-color transition-colors duration-300">
+                        <i data-lucide="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/90">
+            <a href="#new-arrivals" class="block py-3 px-4 text-sm text-gray-300 hover:bg-gray-800">New Arrivals</a>
+            <a href="#collections" class="block py-3 px-4 text-sm text-gray-300 hover:bg-gray-800">Men</a>
+            <a href="#collections" class="block py-3 px-4 text-sm text-gray-300 hover:bg-gray-800">Women</a>
+            <a href="#collections" class="block py-3 px-4 text-sm text-gray-300 hover:bg-gray-800">Accessories</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-[90vh] min-h-[600px] flex items-center justify-center text-center hero-bg">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" style="background: url(https://i.ytimg.com/vi/gey73xiS8F4/maxresdefault.jpg); background-repeat: no-repeat; background-size: cover; opacity: 0.2;"></div>
+            <div class="relative z-10 px-4 fade-in">
+                <h1 class="text-6xl md:text-8xl lg:text-9xl font-heading font-extrabold uppercase text-white tracking-wider leading-tight">
+                    Engineered for <span class="accent-color glowing-text">Performance</span>
+                </h1>
+                <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
+                    Unleash your potential with activewear designed to push boundaries. Premium fabrics, ultimate comfort, and unmatched style.
+                </p>
+                <a href="#new-arrivals"
+                    class="mt-8 inline-flex items-center group accent-bg text-black font-bold uppercase tracking-widest py-4 px-10 rounded-md hover:bg-white transition-all duration-300 transform hover:scale-105">
+                    Shop Now
+                    <i data-lucide="arrow-right" class="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Product Showcase: New Arrivals -->
+        <section id="new-arrivals" class="py-20 md:py-28" style="background-color: var(--bg-secondary);">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-5xl md:text-6xl font-heading font-bold uppercase tracking-wide">New Arrivals</h2>
+                    <p style="color: var(--text-secondary);" class="mt-2">Check out the latest drops from Kinetic.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Product Card 1 -->
+                    <div class="bg-[var(--bg-card)] rounded-lg overflow-hidden group product-card-hover fade-in" style="transition-delay: 100ms;">
                         <div class="relative overflow-hidden">
-                            <img src="./new/new5.webp" alt="Men's Training Tee" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" width="400" height="500">
+                            <img src="./new/new5.webp" alt="Men's Training Tee" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                             <div class="absolute top-3 left-3 bg-red-600 text-white text-xs font-bold uppercase px-3 py-1 rounded-md">Sale</div>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-<!-- ... existing code ... -->
+                                    <div class="flex justify-center items-center space-x-2 mb-3">
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">S</span>
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">M</span>
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">L</span>
+                                        <span class="border-2 border-gray-400 bg-gray-400 text-black rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold">XL</span>
+                                    </div>
+                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5 text-center">
+                            <h3 class="font-semibold text-lg">TechVent Training Tee</h3>
+                            <p style="color: var(--text-secondary);" class="text-sm">Men's Performance Shirt</p>
+                            <div class="mt-3 flex justify-center items-baseline space-x-2">
+                                <span class="text-xl font-bold accent-color">$39.99</span>
+                                <span class="text-md text-gray-500 line-through">$49.99</span>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Product Card 2 -->
                     <div class="bg-[var(--bg-card)] rounded-lg overflow-hidden group product-card-hover fade-in" style="transition-delay: 200ms;">
                         <div class="relative overflow-hidden">
-                            <img src="./new/new2.webp" alt="Women's High-Waist Leggings" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" width="400" height="500">
+                            <img src="./new/new2.webp" alt="Women's High-Waist Leggings" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                             <div class="absolute top-3 left-3 accent-bg text-black text-xs font-bold uppercase px-3 py-1 rounded-md">New</div>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-<!-- ... existing code ... -->
+                                    <div class="flex justify-center items-center space-x-2 mb-3">
+                                        <span class="border-2 border-gray-400 bg-gray-400 text-black rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold">XS</span>
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">S</span>
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">M</span>
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">L</span>
+                                    </div>
+                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5 text-center">
+                            <h3 class="font-semibold text-lg">AuraSculpt Leggings</h3>
+                            <p style="color: var(--text-secondary);" class="text-sm">Women's High-Waist Tights</p>
+                            <p class="mt-3 text-xl font-bold accent-color">$64.99</p>
+                        </div>
+                    </div>
                     <!-- Product Card 3 -->
                     <div class="bg-[var(--bg-card)] rounded-lg overflow-hidden group product-card-hover fade-in" style="transition-delay: 300ms;">
                         <div class="relative overflow-hidden">
-                            <img src="./new/new3.webp" alt="Unisex Performance Hoodie" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" width="400" height="500">
+                            <img src="./new/new3.webp" alt="Unisex Performance Hoodie" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                              <div style="background-color: var(--accent-secondary);" class="absolute top-3 left-3 text-white text-xs font-bold uppercase px-3 py-1 rounded-md">Limited</div>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-<!-- ... existing code ... -->
+                                    <div class="flex justify-center items-center space-x-2 mb-3">
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">S</span>
+                                        <span class="border-2 border-gray-400 bg-gray-400 text-black rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold">M</span>
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">L</span>
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">XL</span>
+                                    </div>
+                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5 text-center">
+                            <h3 class="font-semibold text-lg">Velocity Zip Hoodie</h3>
+                            <p style="color: var(--text-secondary);" class="text-sm">Unisex Performance Hoodie</p>
+                            <p class="mt-3 text-xl font-bold accent-color">$89.99</p>
+                        </div>
+                    </div>
                     <!-- Product Card 4 -->
                     <div class="bg-[var(--bg-card)] rounded-lg overflow-hidden group product-card-hover fade-in" style="transition-delay: 400ms;">
                         <div class="relative overflow-hidden">
-                            <img src="./new/new4.webp" alt="Training Shorts" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" width="400" height="500">
+                            <img src="./new/new4.webp" alt="Training Shorts" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                              <div class="absolute top-3 left-3 accent-bg text-black text-xs font-bold uppercase px-3 py-1 rounded-md">New</div>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-<!-- ... existing code ... -->
-        <!-- Promo Banner 3: Duffle Bag -->
-        <section class="relative">
-            <img src="./new/Fuaark_Web-Banner-27-08-25-_Desktop_-_50_-OFF.webp" alt="Elite Duffle Bag on a rock at sunset" class="w-full h-auto object-cover" loading="lazy" width="1920" height="600">
-            <div class="absolute inset-0 flex items-center justify-center text-center">
-                <!-- <div class="relative z-10 px-4 fade-in">
-                    <p class="text-lg uppercase tracking-widest text-gray-300">Presenting</p>
-<!-- ... existing code ... -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- T-Shirts -->
-                    <a href="#" class="relative aspect-[4/5] rounded-lg overflow-hidden group fade-in" style="transition-delay: 100ms;">
-                        <img src="./images/tshirt.jpg" alt="T-Shirts" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out" loading="lazy" width="400" height="500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                            <h3 class="text-3xl font-heading font-semibold uppercase tracking-wider transition-transform duration-500 ease-in-out group-hover:-translate-y-4">T-Shirts</h3>
-<!-- ... existing code ... -->
-                    <!-- Stringers -->
-                     <a href="#" class="relative aspect-[4/5] rounded-lg overflow-hidden group fade-in" style="transition-delay: 200ms;">
-                        <img src="./images/Stringers.jpg" alt="Stringers" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out" loading="lazy" width="400" height="500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                            <h3 class="text-3xl font-heading font-semibold uppercase tracking-wider transition-transform duration-500 ease-in-out group-hover:-translate-y-4">Stringers</h3>
-<!-- ... existing code ... -->
-                    <!-- Shorts -->
-                     <a href="#" class="relative aspect-[4/5] rounded-lg overflow-hidden group fade-in" style="transition-delay: 300ms;">
-                        <img src="./images/Shorts.jpg" alt="Shorts" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out" loading="lazy" width="400" height="500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                            <h3 class="text-3xl font-heading font-semibold uppercase tracking-wider transition-transform duration-500 ease-in-out group-hover:-translate-y-4">Shorts</h3>
-<!-- ... existing code ... -->
-                     <!-- Joggers -->
-                    <a href="#" class="relative aspect-[4/5] rounded-lg overflow-hidden group fade-in" style="transition-delay: 400ms;">
-                        <img src="./new/new1.webp" alt="Joggers" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out" loading="lazy" width="400" height="500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                            <h3 class="text-3xl font-heading font-semibold uppercase tracking-wider transition-transform duration-500 ease-in-out group-hover:-translate-y-4">Joggers</h3>
-<!-- ... existing code ... -->
-                    <!-- Jackets & Hoodies -->
-                     <a href="#" class="relative aspect-[4/5] rounded-lg overflow-hidden group fade-in" style="transition-delay: 500ms;">
-                        <img src="./images/Hoodies.jpg" alt="Jackets & Hoodies" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out" loading="lazy" width="400" height="500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                            <h3 class="text-3xl font-heading font-semibold uppercase tracking-wider transition-transform duration-500 ease-in-out group-hover:-translate-y-4">Jackets & Hoodies</h3>
-<!-- ... existing code ... -->
-                    <!-- Accessories -->
-                     <a href="#" class="relative aspect-[4/5] rounded-lg overflow-hidden group fade-in" style="transition-delay: 600ms;">
-                        <img src="./images/Bags.jpg" alt="Accessories" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out" loading="lazy" width="400" height="500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                            <h3 class="text-3xl font-heading font-semibold uppercase tracking-wider transition-transform duration-500 ease-in-out group-hover:-translate-y-4">Accessories</h3>
-<!-- ... existing code ... -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Product Card 1 -->
-                    <div class="bg-transparent rounded-lg overflow-hidden group fade-in" style="transition-delay: 100ms;">
-                        <div class="relative overflow-hidden rounded-lg">
-                            <img src="./images/T-shirt_Black.jpg" alt="Power Seamless T-shirt Black" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105 aspect-[4/5]" loading="lazy" width="400" height="500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                                <div class="p-4 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <div class="flex justify-center items-center space-x-2 mb-3">
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">S</span>
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">M</span>
+                                        <span class="border-2 border-gray-400 bg-gray-400 text-black rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold">L</span>
+                                        <span class="border-2 border-gray-500 rounded-md w-8 h-8 flex items-center justify-center text-xs font-bold hover:bg-white hover:text-black cursor-pointer transition">XL</span>
+                                    </div>
                                     <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
-<!-- ... existing code ... -->
-                    <!-- Product Card 2 -->
-                    <div class="bg-transparent rounded-lg overflow-hidden group fade-in" style="transition-delay: 200ms;">
-                        <div class="relative overflow-hidden rounded-lg">
-                            <img src="./images/Shirts-Black.jpg" alt="Aero Shirt Black" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105 aspect-[4/5]" loading="lazy" width="400" height="500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                                <div class="p-4 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
-<!-- ... existing code ... -->
-                    <!-- Product Card 3 -->
-                    <div class="bg-transparent rounded-lg overflow-hidden group fade-in" style="transition-delay: 300ms;">
-                        <div class="relative overflow-hidden rounded-lg">
-                            <img src="./images/sea-grey.jpg" alt="Thrive Pullovers Sea Grey" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105 aspect-[4/5]" loading="lazy" width="400" height="500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                                <div class="p-4 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
-<!-- ... existing code ... -->
-                    <!-- Product Card 4 -->
-                    <div class="bg-transparent rounded-lg overflow-hidden group fade-in" style="transition-delay: 400ms;">
-                        <div class="relative overflow-hidden rounded-lg">
-                            <img src="./images/tshirt_blue.jpg" alt="Power Seamless T-shirt Blue" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105 aspect-[4/5]" loading="lazy" width="400" height="500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                                <div class="p-4 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
-<!-- ... existing code ... -->
-        <!-- Promo Banner 1: Running -->
-        <section class="relative">
-            <img src="./new/Fuaark_Web-Banner-22-08-25-_Desktop_-_Running.webp" alt="Man stretching on a running track with text 'Built to Outrun Limits'" class="w-full h-auto object-cover" loading="lazy" width="1920" height="600">
-            <div class="absolute inset-0 bg-black/20 flex items-center justify-center text-center">
-                <!-- <div class="relative z-10 px-4 fade-in">
-                    <h2 class="text-5xl md:text-7xl font-heading font-bold uppercase text-white tracking-wider">Built to Outrun Limits</h2>
-<!-- ... existing code ... -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Product Card 1 -->
-                    <div class="bg-transparent rounded-lg overflow-hidden group fade-in" style="transition-delay: 100ms;">
-                        <div class="relative overflow-hidden rounded-lg">
-                            <img src="./images/female_tshirt.jpg" alt="Trendsetter Oversized T-shirt Maroon" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105 aspect-[4/5]" loading="lazy" width="400" height="500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                                <div class="p-4 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
-<!-- ... existing code ... -->
-                    <!-- Product Card 2 -->
-                    <div class="bg-transparent rounded-lg overflow-hidden group fade-in" style="transition-delay: 200ms;">
-                        <div class="relative overflow-hidden rounded-lg">
-                            <img src="./images/female_tshirt1.jpg" alt="Brisk Fuaark Cotton Crop Top Black" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105 aspect-[4/5]" loading="lazy" width="400" height="500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                                <div class="p-4 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
-<!-- ... existing code ... -->
-                    <!-- Product Card 3 -->
-                    <div class="bg-transparent rounded-lg overflow-hidden group fade-in" style="transition-delay: 300ms;">
-                        <div class="relative overflow-hidden rounded-lg">
-                            <img src="./images/female_tshirt2.jpg" alt="Compression Full T-shirt Navy" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105 aspect-[4/5]" loading="lazy" width="400" height="500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                                <div class="p-4 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
-<!-- ... existing code ... -->
-                    <!-- Product Card 4 -->
-                    <div class="bg-transparent rounded-lg overflow-hidden group fade-in" style="transition-delay: 400ms;">
-                        <div class="relative overflow-hidden rounded-lg">
-                            <img src="./images/female_tshirt3.jpg" alt="Levitate Oversized T-shirt Red" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105 aspect-[4/5]" loading="lazy" width="400" height="500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                                <div class="p-4 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
-<!-- ... existing code ... -->
-        <!-- Promo Banner 2: Women's -->
-        <section class="relative">
-            <img src="./new/Fuaark_Web-Banner-30-08-25-_Desktop_-_Womens_2.webp" alt="Woman lifting weights with text 'Chase Goals Not Excuses'" class="w-full h-auto object-cover" loading="lazy" width="1920" height="700">
-            <div class="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent flex items-center justify-start text-left">
-                <!-- <div class="relative z-10 px-4 container mx-auto fade-in">
-                     <div class="max-w-xl">
-<!-- ... existing code ... -->
-        <!-- Brand Value Section -->
-        <section style="background-color: var(--bg-secondary);" class="py-16">
-            <div class="container mx-auto px-4">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center fade-in">
-<!-- ... existing code ... -->
-        <!-- Promo Banner 3: Duffle Bag -->
-        <section class="relative">
-            <img src="./new/Fuaark_Web-Banner-01-09-25-_Elite-Duffle-Bag-Desktop.webp" alt="Elite Duffle Bag on a rock at sunset" class="w-full h-auto object-cover" loading="lazy" width="1920" height="600">
-            <div class="absolute inset-0 bg-black/20 flex items-center justify-center text-center">
-                <!-- <div class="relative z-10 px-4 fade-in">
-                    <p class="text-lg uppercase tracking-widest text-gray-300">Presenting</p>
-<!-- ... existing code ... -->
-                    <div class="relative h-[500px] fade-in" style="transition-delay: 200ms;">
-                        <img src="./images/g2.webp" alt="Community Image 1" class="absolute top-0 right-0 w-3/5 h-auto object-cover rounded-lg shadow-2xl" loading="lazy" width="400" height="300">
-                        <img src="./images/g1.webp" alt="Community Image 2" class="absolute top-1/4 left-0 w-1/2 h-auto object-cover rounded-lg shadow-2xl z-10" loading="lazy" width="350" height="250">
-                        <img src="./images/g3.webp" alt="Community Image 3" class="absolute bottom-0 left-1/4 w-3/5 h-auto object-cover rounded-lg shadow-2xl" loading="lazy" width="400" height="300">
-                         <img src="./images/g4.webp" alt="Community Image 4" class="absolute bottom-10 right-0 w-1/3 h-auto object-cover rounded-lg shadow-2xl z-10" loading="lazy" width="250" height="180">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5 text-center">
+                            <h3 class="font-semibold text-lg">Momentum 7" Shorts</h3>
+                            <p style="color: var(--text-secondary);" class="text-sm">Men's Athletic Shorts</p>
+                            <p class="mt-3 text-xl font-bold accent-color">$44.99</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-<!-- ... existing code ... -->
+
+        <!-- Promo Banner 3: Duffle Bag -->
+        <section class="relative">
+            <img src="./new/Fuaark_Web-Banner-27-08-25-_Desktop_-_50_-OFF.webp" alt="Elite Duffle Bag on a rock at sunset" class="w-full h-auto object-cover">
+            <div class="absolute inset-0 flex items-center justify-center text-center">
+                <!-- <div class="relative z-10 px-4 fade-in">
+                    <p class="text-lg uppercase tracking-widest text-gray-300">Presenting</p>
+                    <h2 class="text-5xl md:text-7xl font-heading font-bold uppercase text-white tracking-wider">Elite Duffle Bag</h2>
+                    <a href="#" class="mt-6 inline-flex items-center group border-2 border-white text-white font-bold uppercase tracking-widest py-3 px-8 rounded-md hover:bg-white hover:text-black transition-all duration-300">
+                        Shop Accessories
+                        <i data-lucide="arrow-right" class="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </a>
+                </div> -->
+            </div>
+        </section>
+
+        <!-- Shop By Category Section -->
+        <section id="shop-by-category" class="py-20 md:py-28" style="background-color: var(--bg-primary);">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-5xl md:text-6xl font-heading font-bold uppercase tracking-wide">Shop By Category</h2>
+                    <p style="color: var(--text-secondary);" class="mt-2">Find exactly what you're looking for.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- T-Shirts -->
+                    <a href="#" class="relative aspect-[4/5] rounded-lg overflow-hidden group fade-in" style="transition-delay: 100ms;">
+                        <img src="./images/tshirt.jpg" alt="T-Shirts" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <h3 class="text-3xl font-heading font-semibold uppercase tracking-wider transition-transform duration-500 ease-in-out group-hover:-translate-y-4">T-Shirts</h3>
+                            <div class="flex items-center mt-2 opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:-translate-y-4">
+                                <span class="text-sm font-semibold">Shop Now</span>
+                                <i data-lucide="arrow-right-circle" class="ml-2 w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Stringers -->
+                     <a href="#" class="relative aspect-[4/5] rounded-lg overflow-hidden group fade-in" style="transition-delay: 200ms;">
+                        <img src="./images/Stringers.jpg" alt="Stringers" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <h3 class="text-3xl font-heading font-semibold uppercase tracking-wider transition-transform duration-500 ease-in-out group-hover:-translate-y-4">Stringers</h3>
+                            <div class="flex items-center mt-2 opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:-translate-y-4">
+                                <span class="text-sm font-semibold">Shop Now</span>
+                                <i data-lucide="arrow-right-circle" class="ml-2 w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Shorts -->
+                     <a href="#" class="relative aspect-[4/5] rounded-lg overflow-hidden group fade-in" style="transition-delay: 300ms;">
+                        <img src="./images/Shorts.jpg" alt="Shorts" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <h3 class="text-3xl font-heading font-semibold uppercase tracking-wider transition-transform duration-500 ease-in-out group-hover:-translate-y-4">Shorts</h3>
+                            <div class="flex items-center mt-2 opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:-translate-y-4">
+                                <span class="text-sm font-semibold">Shop Now</span>
+                                <i data-lucide="arrow-right-circle" class="ml-2 w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </a>
+                     <!-- Joggers -->
+                    <a href="#" class="relative aspect-[4/5] rounded-lg overflow-hidden group fade-in" style="transition-delay: 400ms;">
+                        <img src="./new/new1.webp" alt="Joggers" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <h3 class="text-3xl font-heading font-semibold uppercase tracking-wider transition-transform duration-500 ease-in-out group-hover:-translate-y-4">Joggers</h3>
+                            <div class="flex items-center mt-2 opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:-translate-y-4">
+                                <span class="text-sm font-semibold">Shop Now</span>
+                                <i data-lucide="arrow-right-circle" class="ml-2 w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Jackets & Hoodies -->
+                     <a href="#" class="relative aspect-[4/5] rounded-lg overflow-hidden group fade-in" style="transition-delay: 500ms;">
+                        <img src="./images/Hoodies.jpg" alt="Jackets & Hoodies" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <h3 class="text-3xl font-heading font-semibold uppercase tracking-wider transition-transform duration-500 ease-in-out group-hover:-translate-y-4">Jackets & Hoodies</h3>
+                            <div class="flex items-center mt-2 opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:-translate-y-4">
+                                <span class="text-sm font-semibold">Shop Now</span>
+                                <i data-lucide="arrow-right-circle" class="ml-2 w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Accessories -->
+                     <a href="#" class="relative aspect-[4/5] rounded-lg overflow-hidden group fade-in" style="transition-delay: 600ms;">
+                        <img src="./images/Bags.jpg" alt="Accessories" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <h3 class="text-3xl font-heading font-semibold uppercase tracking-wider transition-transform duration-500 ease-in-out group-hover:-translate-y-4">Accessories</h3>
+                            <div class="flex items-center mt-2 opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:-translate-y-4">
+                                <span class="text-sm font-semibold">Shop Now</span>
+                                <i data-lucide="arrow-right-circle" class="ml-2 w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Promo Section -->
+        <section class="relative h-[80vh] overflow-hidden flex items-center justify-center text-center">
+            <video autoplay loop muted playsinline class="video-background">
+                <source src="./new/promo.mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="absolute inset-0 bg-black/20"></div>
+            <div class="relative z-10 px-4 fade-in">
+                <h2 class="text-5xl md:text-7xl font-heading font-bold uppercase text-white tracking-wider">In Motion</h2>
+                <p class="mt-2 text-lg text-gray-300">See our gear in action. Built for every move you make.</p>
+                <a href="#" class="mt-6 inline-flex items-center group border-2 border-white text-white font-bold uppercase tracking-widest py-3 px-8 rounded-md hover:bg-white hover:text-black transition-all duration-300">
+                    Watch The Film
+                    <i data-lucide="play-circle" class="ml-2 w-5 h-5"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Men's Products Section -->
+        <section id="men-products" class="py-20 md:py-28" style="background-color: var(--bg-secondary);">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-12 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-heading font-bold uppercase tracking-wide text-left">Shop Men's</h2>
+                    <div class="flex items-center space-x-4 md:space-x-6 mt-4 md:mt-0 text-xs sm:text-sm">
+                        <a href="#" class="font-semibold uppercase tracking-wider accent-color border-b-2 accent-border pb-1">Men's Tshirts</a>
+                        <a href="#" class="font-semibold uppercase tracking-wider text-gray-400 hover:accent-color transition">Shorts</a>
+                        <a href="#" class="font-semibold uppercase tracking-wider text-gray-400 hover:accent-color transition">Stringers</a>
+                        <a href="#" class="font-semibold uppercase tracking-wider text-gray-400 hover:accent-color transition">Jackets & Hoodies</a>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Product Card 1 -->
+                    <div class="bg-transparent rounded-lg overflow-hidden group fade-in" style="transition-delay: 100ms;">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="./images/T-shirt_Black.jpg" alt="Power Seamless T-shirt Black" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105 aspect-[4/5]">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                <div class="p-4 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4 text-left">
+                            <h3 class="font-semibold text-lg">Power Seamless T-shirt Black</h3>
+                            <p style="color: var(--text-secondary);" class="text-sm">Compression Fit</p>
+                            <p class="mt-2 text-md font-bold text-white">$29.99</p>
+                        </div>
+                    </div>
+                    <!-- Product Card 2 -->
+                    <div class="bg-transparent rounded-lg overflow-hidden group fade-in" style="transition-delay: 200ms;">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="./images/Shirts-Black.jpg" alt="Aero Shirt Black" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105 aspect-[4/5]">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                <div class="p-4 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4 text-left">
+                            <h3 class="font-semibold text-lg">Aero Shirt Black</h3>
+                            <p style="color: var(--text-secondary);" class="text-sm">Slim Fit</p>
+                            <p class="mt-2 text-md font-bold text-white">$34.99</p>
+                        </div>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="bg-transparent rounded-lg overflow-hidden group fade-in" style="transition-delay: 300ms;">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="./images/sea-grey.jpg" alt="Thrive Pullovers Sea Grey" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105 aspect-[4/5]">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                <div class="p-4 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4 text-left">
+                            <h3 class="font-semibold text-lg">Thrive Pullovers Sea Grey</h3>
+                            <p style="color: var(--text-secondary);" class="text-sm">Slim Fit</p>
+                            <p class="mt-2 text-md font-bold text-white">$49.99</p>
+                        </div>
+                    </div>
+                    <!-- Product Card 4 -->
+                    <div class="bg-transparent rounded-lg overflow-hidden group fade-in" style="transition-delay: 400ms;">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="./images/tshirt_blue.jpg" alt="Power Seamless T-shirt Blue" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105 aspect-[4/5]">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                <div class="p-4 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4 text-left">
+                            <h3 class="font-semibold text-lg">Power Seamless T-shirt Blue</h3>
+                            <p style="color: var(--text-secondary);" class="text-sm">Compression Fit</p>
+                            <p class="mt-2 text-md font-bold text-white">$29.99</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Promo Banner 1: Running -->
+        <section class="relative">
+            <img src="./new/Fuaark_Web-Banner-22-08-25-_Desktop_-_Running.webp" alt="Man stretching on a running track with text 'Built to Outrun Limits'" class="w-full h-auto object-cover">
+            <div class="absolute inset-0 bg-black/20 flex items-center justify-center text-center">
+                <!-- <div class="relative z-10 px-4 fade-in">
+                    <h2 class="text-5xl md:text-7xl font-heading font-bold uppercase text-white tracking-wider">Built to Outrun Limits</h2>
+                    <p class="mt-2 text-lg text-gray-300">Limits were never yours. Discover our running collection.</p>
+                    <a href="#" class="mt-6 inline-flex items-center group border-2 border-white text-white font-bold uppercase tracking-widest py-3 px-8 rounded-md hover:bg-white hover:text-black transition-all duration-300">
+                        Shop Running
+                        <i data-lucide="arrow-right" class="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </a>
+                </div> -->
+            </div>
+        </section>
+
+        <!-- Women's Products Section -->
+        <section id="women-products" class="py-20 md:py-28" style="background-color: var(--bg-primary);">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-12 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-heading font-bold uppercase tracking-wide text-left">Shop Women's</h2>
+                     <div class="flex items-center flex-wrap justify-center space-x-4 md:space-x-6 mt-4 md:mt-0 text-xs sm:text-sm">
+                        <a href="#" class="font-semibold uppercase tracking-wider accent-color border-b-2 accent-border pb-1">Women's Tshirts</a>
+                        <a href="#" class="font-semibold uppercase tracking-wider text-gray-400 hover:accent-color transition">Hoodies & Jackets</a>
+                        <a href="#" class="font-semibold uppercase tracking-wider text-gray-400 hover:accent-color transition">Bottoms</a>
+                        <a href="#" class="font-semibold uppercase tracking-wider text-gray-400 hover:accent-color transition">Sports Bra</a>
+                        <a href="#" class="font-semibold uppercase tracking-wider text-gray-400 hover:accent-color transition">Tank Tops</a>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Product Card 1 -->
+                    <div class="bg-transparent rounded-lg overflow-hidden group fade-in" style="transition-delay: 100ms;">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="./images/female_tshirt.jpg" alt="Trendsetter Oversized T-shirt Maroon" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105 aspect-[4/5]">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                <div class="p-4 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4 text-left">
+                            <h3 class="font-semibold text-lg">Trendsetter Oversized T-shirt Maroon</h3>
+                            <p style="color: var(--text-secondary);" class="text-sm">Oversized Fit</p>
+                            <p class="mt-2 text-md font-bold text-white">$24.99</p>
+                        </div>
+                    </div>
+                    <!-- Product Card 2 -->
+                    <div class="bg-transparent rounded-lg overflow-hidden group fade-in" style="transition-delay: 200ms;">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="./images/female_tshirt1.jpg" alt="Brisk Fuaark Cotton Crop Top Black" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105 aspect-[4/5]">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                <div class="p-4 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4 text-left">
+                            <h3 class="font-semibold text-lg">Brisk Fuaark Cotton Crop Top Black</h3>
+                            <p style="color: var(--text-secondary);" class="text-sm">Regular Fit</p>
+                            <p class="mt-2 text-md font-bold text-white">$19.99</p>
+                        </div>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="bg-transparent rounded-lg overflow-hidden group fade-in" style="transition-delay: 300ms;">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="./images/female_tshirt2.jpg" alt="Compression Full T-shirt Navy" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105 aspect-[4/5]">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                <div class="p-4 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4 text-left">
+                            <h3 class="font-semibold text-lg">Compression Full T-shirt Navy</h3>
+                            <p style="color: var(--text-secondary);" class="text-sm">Compression Fit</p>
+                            <p class="mt-2 text-md font-bold text-white">$32.99</p>
+                        </div>
+                    </div>
+                    <!-- Product Card 4 -->
+                    <div class="bg-transparent rounded-lg overflow-hidden group fade-in" style="transition-delay: 400ms;">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="./images/female_tshirt3.jpg" alt="Levitate Oversized T-shirt Red" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105 aspect-[4/5]">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                <div class="p-4 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <button class="w-full bg-white/90 text-black font-bold uppercase text-sm py-3 rounded-md hover:bg-white transition-all">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4 text-left">
+                            <h3 class="font-semibold text-lg">Levitate Oversized T-shirt Red</h3>
+                            <p style="color: var(--text-secondary);" class="text-sm">Oversized Fit</p>
+                            <p class="mt-2 text-md font-bold text-white">$24.99</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Promo Banner 2: Women's -->
+        <section class="relative">
+            <img src="./new/Fuaark_Web-Banner-30-08-25-_Desktop_-_Womens_2.webp" alt="Woman lifting weights with text 'Chase Goals Not Excuses'" class="w-full h-auto object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent flex items-center justify-start text-left">
+                <!-- <div class="relative z-10 px-4 container mx-auto fade-in">
+                     <div class="max-w-xl">
+                        <h2 class="text-5xl md:text-7xl font-heading font-bold uppercase text-white tracking-wider leading-tight">Chase Goals Not Excuses</h2>
+                        <p class="mt-2 text-lg text-gray-300">With the best gear to back you up.</p>
+                        <a href="#" class="mt-6 inline-flex items-center group border-2 border-white text-white font-bold uppercase tracking-widest py-3 px-8 rounded-md hover:bg-white hover:text-black transition-all duration-300">
+                            Shop Women's
+                            <i data-lucide="arrow-right" class="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+
+        <!-- Collections Section -->
+        <section id="collections" class="py-20 md:py-28" style="background-color: var(--bg-primary);">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-5xl md:text-6xl font-heading font-bold uppercase tracking-wide">Explore Collections</h2>
+                    <p style="color: var(--text-secondary);" class="mt-2">Curated gear for every aspect of your training.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                    <!-- Men's Collection -->
+                    <a href="#" class="relative h-96 rounded-lg overflow-hidden group fade-in" style="transition-delay: 100ms;">
+                        <div class="absolute inset-0 collection-bg-men group-hover:scale-110 transition-transform duration-500 ease-in-out"></div>
+                        <div class="absolute inset-0 bg-black/70"></div>
+                        <div class="relative h-full flex flex-col justify-end p-8 text-white" style="background: url(./new/c1.webp); background-repeat: no-repeat; background-size: cover;">
+                            <div class="transition-transform duration-500 ease-in-out group-hover:-translate-y-4">
+                                <h3 class="text-4xl font-heading font-semibold uppercase">Men's</h3>
+                                <div class="mt-2 w-20 h-1 accent-bg"></div>
+                            </div>
+                            <p class="mt-4 opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:-translate-y-4">Shop Tees, Shorts & More</p>
+                        </div>
+                    </a>
+                    <!-- Women's Collection -->
+                    <a href="#" class="relative h-96 rounded-lg overflow-hidden group fade-in" style="transition-delay: 200ms;">
+                        <div class="absolute inset-0 collection-bg-women group-hover:scale-110 transition-transform duration-500 ease-in-out"></div>
+                        <div class="absolute inset-0 bg-black/70"></div>
+                        <div class="relative h-full flex flex-col justify-end p-8 text-white" style="background: url(./new/c2.jpeg); background-repeat: no-repeat; background-size: cover;">
+                            <div class="transition-transform duration-500 ease-in-out group-hover:-translate-y-4">
+                                <h3 class="text-4xl font-heading font-semibold uppercase">Women's</h3>
+                                <div class="mt-2 w-20 h-1 accent-bg"></div>
+                            </div>
+                            <p class="mt-4 opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:-translate-y-4">Shop Leggings, Bras & More</p>
+                        </div>
+                    </a>
+                    <!-- Combat Gear Collection -->
+                    <a href="#" class="relative h-96 rounded-lg overflow-hidden group fade-in" style="transition-delay: 300ms;">
+                         <div class="absolute inset-0 collection-bg-combat group-hover:scale-110 transition-transform duration-500 ease-in-out"></div>
+                        <div class="absolute inset-0 bg-black/70"></div>
+                        <div class="relative h-full flex flex-col justify-end p-8 text-white" style="background: url(./new/c3.jpeg); background-repeat: no-repeat; background-size: cover;">
+                            <div class="transition-transform duration-500 ease-in-out group-hover:-translate-y-4">
+                                <h3 class="text-4xl font-heading font-semibold uppercase">Combat Gear</h3>
+                                <div class="mt-2 w-20 h-1 accent-bg"></div>
+                            </div>
+                            <p class="mt-4 opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:-translate-y-4">Shop Rashguards & Shorts</p>
+                        </div>
+                    </a>
+                    <!-- Accessories Collection -->
+                    <a href="#" class="relative h-96 rounded-lg overflow-hidden group fade-in" style="transition-delay: 400ms;">
+                         <div class="absolute inset-0 collection-bg-acc group-hover:scale-110 transition-transform duration-500 ease-in-out"></div>
+                        <div class="absolute inset-0 bg-black/70"></div>
+                        <div class="relative h-full flex flex-col justify-end p-8 text-white" style="background: url(./new/c4.webp); background-repeat: no-repeat; background-size: cover;">
+                            <div class="transition-transform duration-500 ease-in-out group-hover:-translate-y-4">
+                                <h3 class="text-4xl font-heading font-semibold uppercase">Accessories</h3>
+                                <div class="mt-2 w-20 h-1 accent-bg"></div>
+                            </div>
+                            <p class="mt-4 opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:-translate-y-4">Shop Bags, Hats & More</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Value Section -->
+        <section style="background-color: var(--bg-secondary);" class="py-16">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center fade-in">
+                    <div class="flex flex-col items-center p-6">
+                        <i data-lucide="truck" class="accent-color h-12 w-12 mb-4"></i>
+                        <h4 class="font-bold text-xl uppercase tracking-wider">Free Shipping</h4>
+                        <p style="color: var(--text-secondary);" class="text-sm">On all orders over $100</p>
+                    </div>
+                    <div class="flex flex-col items-center p-6 border-x border-gray-800">
+                        <i data-lucide="shield-check" class="accent-color h-12 w-12 mb-4"></i>
+                        <h4 class="font-bold text-xl uppercase tracking-wider">Money-Back Guarantee</h4>
+                        <p style="color: var(--text-secondary);" class="text-sm">30-day return policy</p>
+                    </div>
+                    <div class="flex flex-col items-center p-6">
+                        <i data-lucide="lock" class="accent-color h-12 w-12 mb-4"></i>
+                        <h4 class="font-bold text-xl uppercase tracking-wider">Secure Checkout</h4>
+                        <p style="color: var(--text-secondary);" class="text-sm">SSL-encrypted payments</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Promo Banner 3: Duffle Bag -->
+        <section class="relative">
+            <img src="./new/Fuaark_Web-Banner-01-09-25-_Elite-Duffle-Bag-Desktop.webp" alt="Elite Duffle Bag on a rock at sunset" class="w-full h-auto object-cover">
+            <div class="absolute inset-0 bg-black/20 flex items-center justify-center text-center">
+                <!-- <div class="relative z-10 px-4 fade-in">
+                    <p class="text-lg uppercase tracking-widest text-gray-300">Presenting</p>
+                    <h2 class="text-5xl md:text-7xl font-heading font-bold uppercase text-white tracking-wider">Elite Duffle Bag</h2>
+                    <a href="#" class="mt-6 inline-flex items-center group border-2 border-white text-white font-bold uppercase tracking-widest py-3 px-8 rounded-md hover:bg-white hover:text-black transition-all duration-300">
+                        Shop Accessories
+                        <i data-lucide="arrow-right" class="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </a>
+                </div> -->
+            </div>
+        </section>
+        
+        <!-- Join Community Section -->
+        <section id="join-community" class="py-20 md:py-28" style="background-color: var(--bg-secondary);">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="fade-in text-center lg:text-left">
+                        <p class="text-sm font-semibold uppercase tracking-widest accent-color">Join the Kinetic Community!</p>
+                        <h2 class="text-5xl md:text-6xl font-heading font-bold uppercase tracking-wide mt-2">Kinetic Athleisure</h2>
+                        <p class="mt-6 text-lg text-gray-300 max-w-lg mx-auto lg:mx-0">
+                            We're a vibrant community uniting style and functionality seamlessly. Whether you're sweating it out at gym or chilling with friends, our versatile wear keeps you looking sharp and feeling comfortable.
+                        </p>
+                        <a href="#"
+                            class="mt-8 inline-flex items-center group bg-white text-black font-bold uppercase tracking-widest py-4 px-10 rounded-md hover:bg-gray-300 transition-all duration-300 transform hover:scale-105">
+                            Join The Community
+                        </a>
+                    </div>
+                    <div class="relative h-[500px] fade-in" style="transition-delay: 200ms;">
+                        <img src="./images/g2.webp" alt="Community Image 1" class="absolute top-0 right-0 w-3/5 h-auto object-cover rounded-lg shadow-2xl">
+                        <img src="./images/g1.webp" alt="Community Image 2" class="absolute top-1/4 left-0 w-1/2 h-auto object-cover rounded-lg shadow-2xl z-10">
+                        <img src="./images/g3.webp" alt="Community Image 3" class="absolute bottom-0 left-1/4 w-3/5 h-auto object-cover rounded-lg shadow-2xl">
+                         <img src="./images/g4.webp" alt="Community Image 4" class="absolute bottom-10 right-0 w-1/3 h-auto object-cover rounded-lg shadow-2xl z-10">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20 md:py-28" style="background-color: var(--bg-primary);">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16 fade-in">
+                    <p class="text-sm font-semibold uppercase tracking-widest accent-color">Testimonials</p>
+                    <h2 class="text-5xl md:text-6xl font-heading font-bold uppercase tracking-wide mt-2">Hear it straight from our customers!</h2>
+                </div>
+                <div class="relative fade-in">
+                    <div id="testimonial-container" class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth -mx-4 px-4">
+                        <!-- Testimonial 1 -->
+                        <div class="snap-center flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-4">
+                            <div class="bg-[var(--bg-card)] p-8 rounded-lg h-full flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center text-yellow-400">
+                                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                    </div>
+                                    <p class="text-gray-300 mt-6 text-lg italic">"The quality is insane. I've put my Kinetic gear through hell and back, and it still looks and feels brand new. Best training apparel I've ever owned."</p>
+                                </div>
                                 <div class="flex items-center mt-8 relative pt-4 border-t border-gray-700/50">
                                     <i data-lucide="quote" class="absolute top-4 right-0 w-20 h-20 text-gray-700/20"></i>
-                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop" class="w-14 h-14 rounded-full object-cover" alt="Reviewer" loading="lazy" width="56" height="56">
+                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop" class="w-14 h-14 rounded-full object-cover" alt="Reviewer">
                                     <div class="ml-4 relative z-10">
                                         <p class="font-bold text-white text-lg">Alex Johnson</p>
                                         <p class="text-sm accent-color">Pro MMA Fighter</p>
-<!-- ... existing code ... -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Testimonial 2 -->
+                        <div class="snap-center flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-4">
+                            <div class="bg-[var(--bg-card)] p-8 rounded-lg h-full flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center text-yellow-400">
+                                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                    </div>
+                                    <p class="text-gray-300 mt-6 text-lg italic">"Finally, leggings that don't slip during squats! The fit is perfect and the fabric is so comfortable. I'm obsessed and need every color."</p>
+                                </div>
                                 <div class="flex items-center mt-8 relative pt-4 border-t border-gray-700/50">
                                     <i data-lucide="quote" class="absolute top-4 right-0 w-20 h-20 text-gray-700/20"></i>
-                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop" class="w-14 h-14 rounded-full object-cover" alt="Reviewer" loading="lazy" width="56" height="56">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop" class="w-14 h-14 rounded-full object-cover" alt="Reviewer">
                                     <div class="ml-4 relative z-10">
                                         <p class="font-bold text-white text-lg">Maria Rodriguez</p>
                                         <p class="text-sm accent-color">CrossFit Athlete</p>
-<!-- ... existing code ... -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Testimonial 3 -->
+                        <div class="snap-center flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-4">
+                            <div class="bg-[var(--bg-card)] p-8 rounded-lg h-full flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center text-yellow-400">
+                                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                    </div>
+                                    <p class="text-gray-300 mt-6 text-lg italic">"From the gym to the street, this gear performs. The designs are modern and sleek, and the comfort is next-level. Highly recommended."</p>
+                                </div>
                                 <div class="flex items-center mt-8 relative pt-4 border-t border-gray-700/50">
                                     <i data-lucide="quote" class="absolute top-4 right-0 w-20 h-20 text-gray-700/20"></i>
-                                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop" class="w-14 h-14 rounded-full object-cover" alt="Reviewer" loading="lazy" width="56" height="56">
+                                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop" class="w-14 h-14 rounded-full object-cover" alt="Reviewer">
                                     <div class="ml-4 relative z-10">
                                         <p class="font-bold text-white text-lg">David Chen</p>
                                         <p class="text-sm accent-color">Personal Trainer</p>
-<!-- ... existing code ... -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Testimonial 4 -->
+                        <div class="snap-center flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-4">
+                            <div class="bg-[var(--bg-card)] p-8 rounded-lg h-full flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center text-yellow-400">
+                                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                    </div>
+                                    <p class="text-gray-300 mt-6 text-lg italic">"The attention to detail is amazing. You can tell this gear is made by people who actually train. It's built to last."</p>
+                                </div>
                                 <div class="flex items-center mt-8 relative pt-4 border-t border-gray-700/50">
                                     <i data-lucide="quote" class="absolute top-4 right-0 w-20 h-20 text-gray-700/20"></i>
-                                    <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop" class="w-14 h-14 rounded-full object-cover" alt="Reviewer" loading="lazy" width="56" height="56">
+                                    <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop" class="w-14 h-14 rounded-full object-cover" alt="Reviewer">
                                     <div class="ml-4 relative z-10">
                                         <p class="font-bold text-white text-lg">James Wilson</p>
                                         <p class="text-sm accent-color">Fitness Enthusiast</p>
-<!-- ... existing code ... -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Navigation Buttons -->
+                    <button id="scroll-left" class="absolute top-1/2 -left-4 transform -translate-y-1/2 bg-gray-800/50 hover:bg-gray-800 rounded-full p-2 transition-colors z-10 hidden md:block">
+                        <i data-lucide="chevron-left" class="w-6 h-6 text-white"></i>
+                    </button>
+                    <button id="scroll-right" class="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-gray-800/50 hover:bg-gray-800 rounded-full p-2 transition-colors z-10 hidden md:block">
+                        <i data-lucide="chevron-right" class="w-6 h-6 text-white"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Instagram Section -->
+        <section id="instagram" class="py-20 md:py-28" style="background-color: var(--bg-secondary);">
+            <div class="container mx-auto px-4">
+                 <div class="text-center mb-12 fade-in">
+                    <h2 class="text-5xl md:text-6xl font-heading font-bold uppercase tracking-wide">Shop The <span class="accent-color">'Gram</span></h2>
+                    <p style="color: var(--text-secondary);" class="mt-2">Tag #KineticWear to be featured</p>
+                </div>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 fade-in">
                     <a href="#" class="group relative aspect-square overflow-hidden rounded-lg">
-                        <img src="./images/g2.webp" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" width="400" height="400"/>
+                        <img src="./images/g2.webp" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"/>
                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                             <i data-lucide="instagram" class="text-white w-10 h-10"></i>
                         </div>
                     </a>
                     <a href="#" class="group relative aspect-square overflow-hidden rounded-lg">
-                        <img src="./images/g4.webp" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" width="400" height="400"/>
+                        <img src="./images/g4.webp" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"/>
                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                             <i data-lucide="instagram" class="text-white w-10 h-10"></i>
                         </div>
                     </a>
                     <a href="#" class="group relative aspect-square overflow-hidden rounded-lg">
-                        <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" width="400" height="400"/>
+                        <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"/>
                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                             <i data-lucide="instagram" class="text-white w-10 h-10"></i>
                         </div>
                     </a>
                     <a href="#" class="group relative aspect-square overflow-hidden rounded-lg">
-                        <img src="./images/g1.webp" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" width="400" height="400"/>
+                        <img src="./images/g1.webp" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"/>
                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                             <i data-lucide="instagram" class="text-white w-10 h-10"></i>
                         </div>
@@ -240,8 +897,129 @@
         
         <!-- Promo Banner 3: Duffle Bag -->
         <section class="relative">
-            <img src="./new/Flextrib-banner.jpg" alt="Elite Duffle Bag on a rock at sunset" class="w-full h-auto object-cover" loading="lazy" width="1920" height="600">
+            <img src="./new/Flextrib-banner.jpg" alt="Elite Duffle Bag on a rock at sunset" class="w-full h-auto object-cover">
             <div class="absolute inset-0 bg-black/20 flex items-center justify-center text-center">
                 <!-- <div class="relative z-10 px-4 fade-in">
                     <p class="text-lg uppercase tracking-widest text-gray-300">Presenting</p>
-<!-- ... existing code ... -->
+                    <h2 class="text-5xl md:text-7xl font-heading font-bold uppercase text-white tracking-wider">Elite Duffle Bag</h2>
+                    <a href="#" class="mt-6 inline-flex items-center group border-2 border-white text-white font-bold uppercase tracking-widest py-3 px-8 rounded-md hover:bg-white hover:text-black transition-all duration-300">
+                        Shop Accessories
+                        <i data-lucide="arrow-right" class="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </a>
+                </div> -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Brand Info -->
+                <div class="md:col-span-2">
+                    <h4 class="text-2xl font-heading font-bold uppercase tracking-widest">KINETIC</h4>
+                    <p class="mt-4 text-gray-400 max-w-sm">Performance-driven activewear to help you conquer your goals.</p>
+                     <div class="flex space-x-4 mt-6">
+                        <a href="#" class="text-gray-500 hover:accent-color"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="text-gray-500 hover:accent-color"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="text-gray-500 hover:accent-color"><i data-lucide="facebook"></i></a>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h5 class="font-bold uppercase text-gray-200 tracking-wider">Support</h5>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:accent-color transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:accent-color transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:accent-color transition-colors">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:accent-color transition-colors">Policies</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h5 class="font-bold uppercase text-gray-200 tracking-wider">Join the Community</h5>
+                    <p class="mt-4 text-gray-400 text-sm">Get exclusive offers and early access to new drops.</p>
+                    <form class="mt-4 flex">
+                        <input type="email" placeholder="Enter your email" class="w-full bg-[#1F1F1F] text-white px-4 py-2 rounded-l-md focus:outline-none focus:ring-2 focus:ring-inset focus:accent-border">
+                        <button type="submit" class="accent-bg text-black px-4 rounded-r-md font-bold hover:bg-white transition-colors">Go</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-500 text-sm">&copy; 2025 Kinetic Wear. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Fade-in on Scroll Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        const fadeInElements = document.querySelectorAll('.fade-in');
+        fadeInElements.forEach(el => observer.observe(el));
+        
+        // Sticky Header shrink on scroll
+        const headerInner = document.getElementById('header-inner');
+        window.onscroll = function() {
+            if (window.scrollY > 50) {
+                headerInner.classList.remove('h-24');
+                headerInner.classList.add('h-20');
+            } else {
+                headerInner.classList.remove('h-20');
+                headerInner.classList.add('h-24');
+            }
+        };
+
+        // Testimonial Carousel scrolling
+        const testimonialContainer = document.getElementById('testimonial-container');
+        const scrollLeftButton = document.getElementById('scroll-left');
+        const scrollRightButton = document.getElementById('scroll-right');
+
+        if (testimonialContainer && scrollLeftButton && scrollRightButton) {
+            scrollRightButton.addEventListener('click', () => {
+                const card = testimonialContainer.querySelector('div');
+                if(card) {
+                    const cardWidth = card.clientWidth;
+                    const gap = parseInt(window.getComputedStyle(testimonialContainer).gap) || 32; // Fallback to 32px if gap not defined
+                    testimonialContainer.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
+                }
+            });
+
+            scrollLeftButton.addEventListener('click', () => {
+                const card = testimonialContainer.querySelector('div');
+                if(card) {
+                    const cardWidth = card.clientWidth;
+                    const gap = parseInt(window.getComputedStyle(testimonialContainer).gap) || 32;
+                     testimonialContainer.scrollBy({ left: -(cardWidth + gap), behavior: 'smooth' });
+                }
+            });
+        }
+
+    </script>
+</body>
+
+</html>
+
